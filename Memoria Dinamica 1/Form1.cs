@@ -22,6 +22,7 @@ namespace Memoria_Dinamica_1
         Queue<string> cola = new Queue<string>();
         Stack<string> pila = new Stack<string>();
         ArrayList Lista = new ArrayList();
+        int indexList = -1;
         private void btn_Click(object sender, EventArgs e)
         {
             if (txt.Text.Length>0)
@@ -85,6 +86,7 @@ namespace Memoria_Dinamica_1
             {
 
                 Lista.Add(txtArray.Text);
+                indexList += 1;
                 txtArray.Text = "";
                 txtConsult.Enabled = false;
             }
@@ -98,19 +100,32 @@ namespace Memoria_Dinamica_1
 
         private void btnCon_Click(object sender, EventArgs e)
         {
-            int indexList = int.Parse(txtConsult.Text);
             txtMostrar.Text = "";
-            if (txtConsult.Text.Length < 1) { MessageBox.Show("introduzca una posicion");
+            if (txtConsult.Text.Length < 1) { 
+                MessageBox.Show("introduzca una posicion");
             }
             else
             {
-                if (indexList > Lista.Count) { MessageBox.Show("introdujo un valor mayor al numero de valores en la Lista");
+                if (int.Parse(txtConsult.Text) > indexList) { MessageBox.Show("introdujo un valor mayor al numero de valores en la Lista");
+                    txtMostrar.Text = "";
                 }
                 else
                 {
-                    txtMostrar.Text = Lista[indexList].ToString();
+                    txtMostrar.Text = Lista[int.Parse(txtConsult.Text)].ToString();
                 }
             }
+        }
+
+        private void txtArray_KeyDown(object sender, KeyEventArgs e)
+        {
+                if (e.KeyCode == Keys.Enter)
+                {
+                // Llama a tu función aquí
+                    btnArray_Click(sender, e);
+
+                    // Evita que se genere el carácter "Enter" en el TextBox
+                    e.SuppressKeyPress = true;
+                }
         }
     }
 }

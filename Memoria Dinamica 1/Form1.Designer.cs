@@ -116,6 +116,7 @@
             this.txtArray.Name = "txtArray";
             this.txtArray.Size = new System.Drawing.Size(100, 26);
             this.txtArray.TabIndex = 7;
+            this.txtArray.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArray_KeyDown);
             // 
             // btnArray
             // 
